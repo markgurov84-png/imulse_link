@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ApiService {
-  static const String baseUrl = 'https://75k5nn-5-189-59-95.ru.tuna.am';
+  static const String baseUrl = 'http://5.189.59.95:3000';
   late IO.Socket socket;
   bool isConnected = false;
 

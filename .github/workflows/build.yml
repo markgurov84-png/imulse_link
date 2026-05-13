@@ -1,4 +1,4 @@
-name: Build Flutter APK
+name: Build Flutter Apps
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Сборка для Android
   build-android:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       
@@ -33,5 +33,29 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: imulse-link-apk
+          name: imulse-link-android
           path: build/app/outputs/flutter-apk/app-release.apk
+
+  # Сборка для iOS
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: 'stable'
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Build IPA
+        run: flutter build ipa --release
+      
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: imulse-link-ios
+          path: build/ios/ipa/*.ipa

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.3.209:3000';
+  static const String baseUrl = 'https://imulselink-server.onrender.com';
   late IO.Socket socket;
   bool isConnected = false;
 
